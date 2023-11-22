@@ -1,0 +1,17 @@
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\bin\Debug\net7.0\Quizzer.Data.deps.json
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\bin\Debug\net7.0\Quizzer.Data.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\bin\Debug\net7.0\Quizzer.Data.pdb
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\bin\Debug\net7.0\Quizzer.Entities.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\bin\Debug\net7.0\Quizzer.Entities.pdb
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\Quizzer.Data.csproj.AssemblyReference.cache
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\Quizzer.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\Quizzer.Data.AssemblyInfoInputs.cache
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\Quizzer.Data.AssemblyInfo.cs
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\Quizzer.Data.csproj.CoreCompileInputs.cache
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\Quizzer.Data.csproj.CopyComplete
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\Quizzer.Data.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\refint\Quizzer.Data.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\Quizzer.Data.pdb
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\ref\Quizzer.Data.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\bin\Debug\net7.0\Quizzer.Data.runtimeconfig.json
+D:\!PI\QuizApp\Quizzer\Quizzer.Data\obj\Debug\net7.0\Quizzer.Data.genruntimeconfig.cache

@@ -1,0 +1,258 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Services\\Quizzer.Services.csproj": {}
+  },
+  "projects": {
+    "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Data\\Quizzer.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Data\\Quizzer.Data.csproj",
+        "projectName": "Quizzer.Data",
+        "projectPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Data\\Quizzer.Data.csproj",
+        "packagesPath": "C:\\Users\\Polina\\.nuget\\packages\\",
+        "outputPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Polina\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Entities\\Quizzer.Entities.csproj": {
+                "projectPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Entities\\Quizzer.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.14, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Dtos\\Quizzer.Dtos.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Dtos\\Quizzer.Dtos.csproj",
+        "projectName": "Quizzer.Dtos",
+        "projectPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Dtos\\Quizzer.Dtos.csproj",
+        "packagesPath": "C:\\Users\\Polina\\.nuget\\packages\\",
+        "outputPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Dtos\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Polina\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Entities\\Quizzer.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Entities\\Quizzer.Entities.csproj",
+        "projectName": "Quizzer.Entities",
+        "projectPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Entities\\Quizzer.Entities.csproj",
+        "packagesPath": "C:\\Users\\Polina\\.nuget\\packages\\",
+        "outputPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Polina\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Services\\Quizzer.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Services\\Quizzer.Services.csproj",
+        "projectName": "Quizzer.Services",
+        "projectPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Services\\Quizzer.Services.csproj",
+        "packagesPath": "C:\\Users\\Polina\\.nuget\\packages\\",
+        "outputPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Polina\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Data\\Quizzer.Data.csproj": {
+                "projectPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Data\\Quizzer.Data.csproj"
+              },
+              "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Dtos\\Quizzer.Dtos.csproj": {
+                "projectPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Dtos\\Quizzer.Dtos.csproj"
+              },
+              "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Entities\\Quizzer.Entities.csproj": {
+                "projectPath": "D:\\!PI\\QuizApp\\Quizzer\\Quizzer.Entities\\Quizzer.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

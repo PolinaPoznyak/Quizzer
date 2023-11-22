@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Ta2AeVplbCul9SZejD5s2UFUTnW2H4XCnwmn/u1EKUc=",
+  "Source": "Quizzer.Api",
+  "BasePath": "_content/Quizzer.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

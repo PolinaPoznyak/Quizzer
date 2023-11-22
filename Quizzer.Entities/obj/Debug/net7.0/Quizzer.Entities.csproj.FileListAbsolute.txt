@@ -1,0 +1,11 @@
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\bin\Debug\net7.0\Quizzer.Entities.deps.json
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\bin\Debug\net7.0\Quizzer.Entities.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\bin\Debug\net7.0\Quizzer.Entities.pdb
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\obj\Debug\net7.0\Quizzer.Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\obj\Debug\net7.0\Quizzer.Entities.AssemblyInfoInputs.cache
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\obj\Debug\net7.0\Quizzer.Entities.AssemblyInfo.cs
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\obj\Debug\net7.0\Quizzer.Entities.csproj.CoreCompileInputs.cache
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\obj\Debug\net7.0\Quizzer.Entities.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\obj\Debug\net7.0\refint\Quizzer.Entities.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\obj\Debug\net7.0\Quizzer.Entities.pdb
+D:\!PI\QuizApp\Quizzer\Quizzer.Entities\obj\Debug\net7.0\ref\Quizzer.Entities.dll
