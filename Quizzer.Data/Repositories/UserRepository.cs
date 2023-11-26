@@ -7,7 +7,7 @@ namespace Quizzer.Data.Repositories;
 
 public class UserRepository : Repository<User>, IUserRepository
 {
-    public UserRepository(DbContext dbContext)
+    public UserRepository(QuizzerDbContext dbContext)
         :base(dbContext)
     {
     }
@@ -23,7 +23,7 @@ public class UserRepository : Repository<User>, IUserRepository
 
     public async Task<User> GetUserByIdAsync(Guid userId)
     {
-        var user = await Data.FirstOrDefaultAsync(u => u.Id == userId);
+        var user = await Data.SingleOrDefaultAsync(u => u.Id == userId);
         
         return user;
     }

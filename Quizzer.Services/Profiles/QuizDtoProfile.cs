@@ -4,9 +4,9 @@ using Quizzer.Entities;
 
 namespace Quizzer.Services.Profiles;
 
-public class QuizProfile : Profile
+public class QuizDtoProfile : Profile
 {
-    public QuizProfile()
+    public QuizDtoProfile()
     {
         CreateMap<Quiz, QuizDto>().ReverseMap();
     }

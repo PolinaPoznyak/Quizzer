@@ -3,13 +3,13 @@ using Quizzer.Data.Repositories.Interfaces;
 
 namespace Quizzer.Data.Repositories;
 
-public abstract class Repository<T> : IRepository<T> where T : class
+public class Repository<T> : IRepository<T> where T : class
 {
     private readonly DbContext _dbContext;
     
     protected readonly DbSet<T> Data;
     
-    public Repository(DbContext dbContext)
+    public Repository(QuizzerDbContext dbContext)
     {
         _dbContext = dbContext;
         Data = _dbContext.Set<T>();

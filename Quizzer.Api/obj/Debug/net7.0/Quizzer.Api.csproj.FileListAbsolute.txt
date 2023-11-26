@@ -45,3 +45,8 @@ D:\!PI\QuizApp\Quizzer\Quizzer.Api\obj\Debug\net7.0\refint\Quizzer.Api.dll
 D:\!PI\QuizApp\Quizzer\Quizzer.Api\obj\Debug\net7.0\Quizzer.Api.pdb
 D:\!PI\QuizApp\Quizzer\Quizzer.Api\obj\Debug\net7.0\Quizzer.Api.genruntimeconfig.cache
 D:\!PI\QuizApp\Quizzer\Quizzer.Api\obj\Debug\net7.0\ref\Quizzer.Api.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Humanizer.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Mono.TextTemplating.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\System.CodeDom.dll

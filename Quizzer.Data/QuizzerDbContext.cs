@@ -16,4 +16,3 @@ public class QuizzerDbContext : DbContext
     public DbSet<UserResult> UserResults { get; set; }
     public DbSet<UserAnswer> UserAnswers { get; set; }
 }
-

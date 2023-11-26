@@ -6,7 +6,7 @@ namespace Quizzer.Data.Repositories;
 
 public class QuestionRepository : Repository<Question>, IQuestionRepository
 {
-    public QuestionRepository(DbContext repositoryContext)
+    public QuestionRepository(QuizzerDbContext repositoryContext)
         :base(repositoryContext)
     {
     }

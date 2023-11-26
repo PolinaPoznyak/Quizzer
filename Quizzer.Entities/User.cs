@@ -18,4 +18,9 @@ public class User
     public ICollection<Quiz> CreatedQuizzes { get; set; }
     
     public ICollection<ActiveQuiz>? ActiveQuizzes { get; set; }
+    
+    public User()
+    {
+        Id = Guid.NewGuid();
+    }
 }

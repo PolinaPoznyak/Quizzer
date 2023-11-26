@@ -10,5 +10,4 @@ public class QuizDto
     
     public IEnumerable<QuestionDto>? Questions { get; set; }
     
-    //public IEnumerable<ActiveQuizDto>? ActiveQuizzes { get; set; }
 }
