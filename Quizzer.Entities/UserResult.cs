@@ -6,6 +6,8 @@ public class UserResult
     
     public Guid? UserAnswerId { get; set; }
     
+    public Guid? ActiveQuizId { get; set; }
+    
     public int? Score { get; set; }
 
     public ActiveQuiz ActiveQuiz { get; set; }

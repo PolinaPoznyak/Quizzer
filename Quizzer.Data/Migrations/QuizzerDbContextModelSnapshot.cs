@@ -47,9 +47,6 @@ namespace Quizzer.Data.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.HasIndex("ResultId")
-                        .IsUnique();
-
                     b.HasIndex("UserId");
 
                     b.ToTable("ActiveQuizzes");
@@ -153,6 +150,9 @@ namespace Quizzer.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Username")
+                        .IsUnique();
+
                     b.ToTable("Users");
                 });
 
@@ -176,13 +176,20 @@ namespace Quizzer.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("ActiveQuizId")
+                        .HasColumnType("uuid");
+
                     b.Property<int?>("Score")
                         .HasColumnType("integer");
 
                     b.Property<Guid?>("UserAnswerId")
+                        .IsRequired()
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ActiveQuizId")
+                        .IsUnique();
 
                     b.HasIndex("UserAnswerId")
                         .IsUnique();
@@ -198,12 +205,6 @@ namespace Quizzer.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Quizzer.Entities.UserResult", "Result")
-                        .WithOne("ActiveQuiz")
-                        .HasForeignKey("Quizzer.Entities.ActiveQuiz", "ResultId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Quizzer.Entities.User", "User")
                         .WithMany("ActiveQuizzes")
                         .HasForeignKey("UserId")
@@ -211,8 +212,6 @@ namespace Quizzer.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Quiz");
-
-                    b.Navigation("Result");
 
                     b.Navigation("User");
                 });
@@ -252,11 +251,25 @@ namespace Quizzer.Data.Migrations
 
             modelBuilder.Entity("Quizzer.Entities.UserResult", b =>
                 {
+                    b.HasOne("Quizzer.Entities.ActiveQuiz", "ActiveQuiz")
+                        .WithOne("Result")
+                        .HasForeignKey("Quizzer.Entities.UserResult", "ActiveQuizId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Quizzer.Entities.UserAnswer", "UserAnswer")
                         .WithOne("UserResult")
-                        .HasForeignKey("Quizzer.Entities.UserResult", "UserAnswerId");
+                        .HasForeignKey("Quizzer.Entities.UserResult", "UserAnswerId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
+                    b.Navigation("ActiveQuiz");
 
                     b.Navigation("UserAnswer");
+                });
+
+            modelBuilder.Entity("Quizzer.Entities.ActiveQuiz", b =>
+                {
+                    b.Navigation("Result");
                 });
 
             modelBuilder.Entity("Quizzer.Entities.Question", b =>
@@ -281,12 +294,6 @@ namespace Quizzer.Data.Migrations
             modelBuilder.Entity("Quizzer.Entities.UserAnswer", b =>
                 {
                     b.Navigation("UserResult")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Quizzer.Entities.UserResult", b =>
-                {
-                    b.Navigation("ActiveQuiz")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

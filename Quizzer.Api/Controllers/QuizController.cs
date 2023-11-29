@@ -1,5 +1,8 @@
+using System.Security.Claims;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Quizzer.Api.Models.Request.Quiz;
 using Quizzer.Api.Models.Response.Quiz;
 using Quizzer.Data.Repositories.Interfaces;
@@ -23,10 +26,20 @@ namespace Quizzer.Api.Controllers;
             _mapper = mapper;
         }
         
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateQuiz(QuizCreateRequestModel quizRequest)
         {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.Name);
+
+            if (userIdClaim == null || !Guid.TryParse(userIdClaim, out var userId))
+            {
+                return BadRequest("Invalid user ID");
+            }
+    
             var quizDto = _mapper.Map<QuizDto>(quizRequest);
+
+            quizDto.UserId = userId;
 
             var quiz = await _quizService.CreateQuizAnsync(quizDto);
             var quizResponse = _mapper.Map<QuizCreateResponseModel>(quiz);
@@ -43,7 +56,9 @@ namespace Quizzer.Api.Controllers;
             {
                 return NotFound($"Quiz with Id {quizRequest.Id} not found.");
             }
+
             var updatedQuizDto = _mapper.Map<QuizDto>(quizRequest);
+            updatedQuizDto.UserId = existingQuiz.UserId;
             var updatedQuiz = await _quizService.UpdateQuizAsync(updatedQuizDto);
             var quizResponse = _mapper.Map<QuizUpdateResponseModel>(updatedQuiz);
 

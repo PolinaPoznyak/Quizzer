@@ -50,3 +50,12 @@ D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.EntityFrameworkCor
 D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Mono.TextTemplating.dll
 D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\System.CodeDom.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\BCrypt.Net-Next.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+D:\!PI\QuizApp\Quizzer\Quizzer.Api\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

@@ -9,12 +9,14 @@ namespace Quizzer.Services;
 public class QuizService : IQuizService
 {
     private readonly IQuizRepository _quizRepository;
+    private readonly IQuestionService _questionService;
 
     private readonly IMapper _mapper;
 
-    public QuizService(IQuizRepository quizRepository, IMapper mapper)
+    public QuizService(IQuizRepository quizRepository, IMapper mapper, IQuestionService questionService)
     {
         _quizRepository = quizRepository;
+        _questionService = questionService;
         _mapper = mapper;
     }
     
@@ -29,17 +31,18 @@ public class QuizService : IQuizService
 
     public async Task<QuizDto> UpdateQuizAsync(QuizDto quizDto)
     {
-        var existingQuiz = await _quizRepository.GetQuizByIdAsync(quizDto.Id);
+        var quizEntity = _mapper.Map<Quiz>(quizDto);
 
-        if (existingQuiz == null)
+        if (quizEntity.Questions != null)
         {
-            return null;
+            foreach (var quizEntityQuestion in quizEntity.Questions)
+            {
+                quizEntityQuestion.QuizId = quizEntity.Id;
+            }
         }
 
-        existingQuiz.Title = quizDto.Title;
-        existingQuiz.Description = quizDto.Description;
-        
-        await _quizRepository.UpdateAsync(existingQuiz);
+        await _quizRepository.UpdateAsync(quizEntity);
+        await _questionService.UpdateQuestionsInQuizAsync(quizEntity.Id, quizDto.Questions);
 
         return quizDto;
     }

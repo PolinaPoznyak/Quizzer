@@ -23,11 +23,18 @@ public class UserRepository : Repository<User>, IUserRepository
 
     public async Task<User> GetUserByIdAsync(Guid userId)
     {
-        var user = await Data.SingleOrDefaultAsync(u => u.Id == userId);
+        var user = await Data.AsNoTracking().SingleOrDefaultAsync(u => u.Id == userId);
         
         return user;
     }
-    
+
+    public async Task<User> GetUserByUsernameAsync(string username)
+    {
+        var user = await Data.AsNoTracking().SingleOrDefaultAsync(u => u.Username == username);
+
+        return user;
+    }
+
     public async Task<User> GetUserWithCreatedQuizzesAsync(Guid userId)
     {
         var user = await Data

@@ -8,6 +8,8 @@ public class QuizDto
     
     public string? Description { get; set; }
     
+    public Guid UserId { get; set; }
+    
     public IEnumerable<QuestionDto>? Questions { get; set; }
     
 }

@@ -13,8 +13,7 @@ public class QuizRepository : Repository<Quiz>, IQuizRepository
 
     public async Task<IReadOnlyCollection<Quiz>> GetAllQuizzesAsync()
     {
-        var quizzes = await Data.OrderBy(q => q.Title)
-            .AsNoTracking()
+        var quizzes = await Data.AsNoTracking().Include(q => q.Questions).OrderBy(q => q.Title)
             .ToListAsync();
 
         return quizzes;
@@ -22,7 +21,7 @@ public class QuizRepository : Repository<Quiz>, IQuizRepository
 
     public async Task<Quiz> GetQuizByIdAsync(Guid id)
     {
-        var quiz = await Data.FirstOrDefaultAsync(q => q.Id == id);
+        var quiz = await Data.AsNoTracking().FirstOrDefaultAsync(q => q.Id == id);
 
         return quiz;
     }

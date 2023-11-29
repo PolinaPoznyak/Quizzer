@@ -13,4 +13,6 @@ public class UserGetResponseModel
     public string? FullName { get; set; }
     
     public string? ProfilePicture { get; set; }
+    
+    public string? Role { get; set; }
 }

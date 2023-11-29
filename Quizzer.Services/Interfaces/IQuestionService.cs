@@ -1,4 +1,5 @@
 ﻿using Quizzer.Dtos;
+using Quizzer.Entities;
 
 namespace Quizzer.Services.Interfaces;
 
@@ -9,4 +10,5 @@ public interface IQuestionService
     Task<QuestionDto> DeleteQuestionAsync(Guid id);
     
     Task<QuestionDto> GetQuestionByIdAsync(Guid id);
+    Task<IEnumerable<QuestionDto>> UpdateQuestionsInQuizAsync(Guid quizId, IEnumerable<QuestionDto> updatedQuestions);
 }

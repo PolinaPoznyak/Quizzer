@@ -18,7 +18,7 @@ public class Repository<T> : IRepository<T> where T : class
     
     public async Task<IReadOnlyCollection<T>> GetAllAsync()
     {
-        var result = await Data.ToListAsync();
+        var result = await Data.AsNoTracking().ToListAsync();
 
         return result;
     }
@@ -33,6 +33,7 @@ public class Repository<T> : IRepository<T> where T : class
 
     public async Task<T> UpdateAsync(T item)
     {
+        Data.Attach(item);
         Data.Update(item);
         await _dbContext.SaveChangesAsync();
         
@@ -52,5 +53,10 @@ public class Repository<T> : IRepository<T> where T : class
         var result = await _dbContext.SaveChangesAsync();
 
         return result;
+    }
+    
+    public void Detach(T entity)
+    {
+        _dbContext.Entry(entity).State = EntityState.Detached;
     }
 }

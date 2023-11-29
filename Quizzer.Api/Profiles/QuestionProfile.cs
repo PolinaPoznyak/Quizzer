@@ -13,7 +13,7 @@ public class QuestionProfile : Profile
         CreateMap<QuestionUpdateRequestModel, QuestionDto>();
         
         CreateMap<QuestionDto, QuestionCreateResponseModel>();
-        CreateMap<QuestionDto, QuestionUpdateRequestModel>();
+        CreateMap<QuestionDto, QuestionUpdateResponseModel>();
         CreateMap<QuestionDto, QuestionDeleteResponseModel>();
         CreateMap<QuestionDto, QuestionGetResponseModel>();
     }    

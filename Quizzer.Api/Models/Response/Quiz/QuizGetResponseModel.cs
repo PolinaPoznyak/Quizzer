@@ -1,4 +1,4 @@
-﻿using Quizzer.Dtos;
+﻿using Quizzer.Api.Models.Response.Questions;
 
 namespace Quizzer.Api.Models.Response.Quiz;
 
@@ -10,5 +10,5 @@ public class QuizGetResponseModel
     
     public string? Description { get; set; }
     
-    public IEnumerable<QuestionDto>? Questions { get; set; }
+    public IEnumerable<QuestionGetResponseModel>? Questions { get; set; }
 }

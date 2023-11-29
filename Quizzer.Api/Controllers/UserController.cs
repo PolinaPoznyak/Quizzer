@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Quizzer.Api.Models.Request.Users;
 using Quizzer.Api.Models.Response.Users;
@@ -23,15 +24,41 @@ namespace Quizzer.Api.Controllers
             _mapper = mapper;
         }
         
-        [HttpPost]
-        public async Task<IActionResult> CreateUser(UserCreateRequestModel userRequest)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(UserCreateRequestModel userRequest)
         {
             var userDto = _mapper.Map<UserDto>(userRequest);
+            var createdUser = await _userService.CreateUserAsync(userDto, role: "User");
 
-            var user = await _userService.CreateUserAnsync(userDto);
-            var userResponse = _mapper.Map<UserCreateResponseModel>(user);
+            var token = _userService.GenerateJwtToken(createdUser);
 
-            return Ok(userResponse);
+            return Ok(new { Token = token });
+        }
+
+        [HttpPost("register/admin")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> RegisterAdmin(UserCreateRequestModel userRequest)
+        {
+            var userDto = _mapper.Map<UserDto>(userRequest);
+            var createdAdmin = await _userService.CreateUserAsync(userDto, role: "Admin");
+
+            var token = _userService.GenerateJwtToken(createdAdmin);
+
+            return Ok(new { Token = token });
+        }
+        
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserCreateRequestModel userRequest)
+        {
+            var userDto = await _userService.AuthenticateAsync(userRequest.Username, userRequest.Password);
+
+            if (userDto == null)
+            {
+                return Unauthorized();
+            }
+            var token = _userService.GenerateJwtToken(userDto);
+
+            return Ok(new { Token = token });
         }
 
         [HttpPut]

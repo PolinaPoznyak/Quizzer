@@ -67,4 +67,31 @@ public class QuestionService : IQuestionService
 
         return questionDto;
     }
+    
+    public async Task<IEnumerable<QuestionDto>> UpdateQuestionsInQuizAsync(Guid quizId, IEnumerable<QuestionDto> updatedQuestions)
+    {
+        var existingQuestions = await _questionRepository.GetQuestionsByQuizIdAsync(quizId);
+        var updatedQuestionDtos = new List<QuestionDto>();
+
+        foreach (var updatedQuestionDto in updatedQuestions)
+        {
+            var existingQuestion = existingQuestions.FirstOrDefault(q => q.Id == updatedQuestionDto.Id);
+
+            if (existingQuestion != null)
+            {
+                _questionRepository.Detach(existingQuestion);
+                _mapper.Map(updatedQuestionDto, existingQuestion);
+
+                await _questionRepository.UpdateAsync(existingQuestion);
+
+                updatedQuestionDtos.Add(_mapper.Map<QuestionDto>(existingQuestion));
+            }
+            else
+            {
+                // TODO: Обработка ситуации, если вопрос не найден
+            }
+        }
+
+        return updatedQuestionDtos;
+    }
 }
