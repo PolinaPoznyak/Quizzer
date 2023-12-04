@@ -13,4 +13,6 @@ public class Question
     public Quiz Quiz { get; set; }
     
     public ICollection<QuizAnswer> Answers { get; set; }
+    
+    public ICollection<ResultDetails> ResultDetails { get; set; }
 }

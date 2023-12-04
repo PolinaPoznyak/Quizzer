@@ -72,6 +72,7 @@ public class UserService : IUserService
     {
         userDto.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
         userDto.Role = role;
+        userDto.IsDeleted = false;
         
         var userEntity = _mapper.Map<User>(userDto);
         await _userRepository.CreateAsync(userEntity);

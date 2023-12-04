@@ -13,42 +13,40 @@ public class QuizzerDbContext : DbContext
     public DbSet<Quiz> Quizzes { get; set; }
     public DbSet<Question> Questions { get; set; }
     public DbSet<QuizAnswer> QuizAnswers { get; set; }
-    public DbSet<ActiveQuiz> ActiveQuizzes { get; set; }
-    public DbSet<UserResult> UserResults { get; set; }
-    public DbSet<UserAnswer> UserAnswers { get; set; }
+    public DbSet<QuizSession> QuizSessions { get; set; }
+    public DbSet<QuizSessionResult> QuizSessionResults { get; set; }
+    public DbSet<ResultDetails> ResultDetails { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.ApplyConfiguration(new ActiveQuizConfiguration());
+        modelBuilder.ApplyConfiguration(new QuizSessionConfiguration());
         modelBuilder.ApplyConfiguration(new QuestionConfiguration());
         modelBuilder.ApplyConfiguration(new QuizConfiguration());
         modelBuilder.ApplyConfiguration(new QuizAnswerConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
-        modelBuilder.ApplyConfiguration(new UserAnswerConfiguration());
-        modelBuilder.ApplyConfiguration(new UserResultConfiguration());
+        modelBuilder.ApplyConfiguration(new ResultDetailConfiguration());
+        modelBuilder.ApplyConfiguration(new QuizSessionResultConfiguration());
     }
 }
 
-    public class ActiveQuizConfiguration : IEntityTypeConfiguration<ActiveQuiz>
+    public class QuizSessionConfiguration : IEntityTypeConfiguration<QuizSession>
     {
-        public void Configure(EntityTypeBuilder<ActiveQuiz> builder)
+        public void Configure(EntityTypeBuilder<QuizSession> builder)
         {
-            builder.HasKey(aq => aq.Id);
+            builder.HasKey(qs => qs.Id);
 
-            builder.HasOne(aq => aq.User)
-                .WithMany(u => u.ActiveQuizzes)
-                .HasForeignKey(aq => aq.UserId);
-
-            builder.HasOne(aq => aq.Quiz)
-                .WithMany(q => q.ActiveQuizzes)
-                .HasForeignKey(aq => aq.QuizId);
-
-            builder.HasOne(aq => aq.Result)
-                .WithOne(ur => ur.ActiveQuiz)
-                .HasForeignKey<UserResult>(ur => ur.ActiveQuizId)
-                .OnDelete(DeleteBehavior.Cascade); 
+            builder.HasOne(qs => qs.Quiz)
+                .WithMany(q => q.QuizSessions)
+                .HasForeignKey(qs => qs.QuizId)
+                .OnDelete(DeleteBehavior.Restrict);
+            
+            builder.HasMany(qs => qs.QuizSessionResults)
+                .WithOne(qsr => qsr.QuizSession)
+                .HasForeignKey(qsr => qsr.QuizSessionId)
+                .OnDelete((DeleteBehavior.Restrict));
+            //TODO: change delete cascade
         }
     }
 
@@ -60,11 +58,18 @@ public class QuizzerDbContext : DbContext
 
             builder.HasOne(q => q.Quiz)
                 .WithMany(qz => qz.Questions)
-                .HasForeignKey(q => q.QuizId);
+                .HasForeignKey(q => q.QuizId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(q => q.Answers)
-                .WithOne(a => a.Question)
-                .HasForeignKey(a => a.QuestionId);
+                .WithOne(qa => qa.Question)
+                .HasForeignKey(qa => qa.QuestionId)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.HasMany(q => q.ResultDetails)
+                .WithOne(rd => rd.Question)
+                .HasForeignKey(rd => rd.QuestionId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 
@@ -74,17 +79,20 @@ public class QuizzerDbContext : DbContext
         {
             builder.HasKey(q => q.Id);
 
-            builder.HasOne(q => q.User)
+            builder.HasOne(qz => qz.User)
                 .WithMany(u => u.CreatedQuizzes)
-                .HasForeignKey(q => q.UserId);
+                .HasForeignKey(qz => qz.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasMany(q => q.Questions)
+            builder.HasMany(qz => qz.Questions)
                 .WithOne(q => q.Quiz)
-                .HasForeignKey(q => q.QuizId);
+                .HasForeignKey(q => q.QuizId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(q => q.ActiveQuizzes)
-                .WithOne(aq => aq.Quiz)
-                .HasForeignKey(aq => aq.QuizId);
+            builder.HasMany(qz => qz.QuizSessions)
+                .WithOne(qs => qs.Quiz)
+                .HasForeignKey(qs => qs.QuizId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 
@@ -96,7 +104,13 @@ public class QuizzerDbContext : DbContext
 
             builder.HasOne(qa => qa.Question)
                 .WithMany(q => q.Answers)
-                .HasForeignKey(qa => qa.QuestionId);
+                .HasForeignKey(qa => qa.QuestionId)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.HasMany(qa => qa.ResultDetails)
+                .WithOne(rd => rd.QuizAnswer)
+                .HasForeignKey(rd => rd.QuizAnswerId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 
@@ -111,41 +125,48 @@ public class QuizzerDbContext : DbContext
 
             builder.HasMany(u => u.CreatedQuizzes)
                 .WithOne(q => q.User)
-                .HasForeignKey(q => q.UserId);
+                .HasForeignKey(q => q.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasMany(u => u.ActiveQuizzes)
-                .WithOne(aq => aq.User)
-                .HasForeignKey(aq => aq.UserId);
+            builder.HasMany(u => u.QuizSessionResults)
+                .WithOne(qsr => qsr.User)
+                .HasForeignKey(qsr => qsr.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 
-    public class UserAnswerConfiguration : IEntityTypeConfiguration<UserAnswer>
+    public class ResultDetailConfiguration : IEntityTypeConfiguration<ResultDetails>
     {
-        public void Configure(EntityTypeBuilder<UserAnswer> builder)
+        public void Configure(EntityTypeBuilder<ResultDetails> builder)
         {
-            builder.HasKey(ua => ua.Id);
-
-            builder.HasOne(ua => ua.UserResult)
-                .WithOne(ur => ur.UserAnswer)
-                .HasForeignKey<UserResult>(ur => ur.UserAnswerId)
-                .OnDelete(DeleteBehavior.SetNull);
-        }
-    }
-
-    public class UserResultConfiguration : IEntityTypeConfiguration<UserResult>
-    {
-        public void Configure(EntityTypeBuilder<UserResult> builder)
-        {
-            builder.HasKey(ur => ur.Id);
-
-            builder.HasOne(ur => ur.ActiveQuiz)
-                .WithOne(aq => aq.Result)
-                .HasForeignKey<UserResult>(ur => ur.ActiveQuizId)
+            builder.HasKey(rd => rd.Id);
+            
+            builder.HasOne(rd => rd.QuizSessionResult)
+                .WithMany(qsr => qsr.ResultDetails)
+                .HasForeignKey(qd => qd.QuizSessionResultId)
                 .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
 
-            builder.HasOne(ur => ur.UserAnswer)
-                .WithOne(ua => ua.UserResult)
-                .HasForeignKey<UserResult>(ur => ur.UserAnswerId)
-                .OnDelete(DeleteBehavior.SetNull);
+    public class QuizSessionResultConfiguration : IEntityTypeConfiguration<QuizSessionResult>
+    {
+        public void Configure(EntityTypeBuilder<QuizSessionResult> builder)
+        {
+            builder.HasKey(qsr => qsr.Id);
+            
+            builder.HasMany(qsr => qsr.ResultDetails)
+                .WithOne(rd => rd.QuizSessionResult)
+                .HasForeignKey(rd => rd.QuizSessionResultId)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.HasOne(qsr => qsr.QuizSession)
+                .WithMany(qs => qs.QuizSessionResults)
+                .HasForeignKey(qsr => qsr.QuizSessionId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(qsr => qsr.User)
+                .WithMany(u => u.QuizSessionResults)
+                .HasForeignKey(qsr => qsr.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }

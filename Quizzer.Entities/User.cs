@@ -13,9 +13,11 @@ public class User
     
     public string? ProfilePicture { get; set; }
     
-    public string? Role { get; set; }
+    public string Role { get; set; }
+    
+    public bool IsDeleted { get; set; }
 
     public ICollection<Quiz> CreatedQuizzes { get; set; }
     
-    public ICollection<ActiveQuiz>? ActiveQuizzes { get; set; }
+    public ICollection<QuizSessionResult>? QuizSessionResults { get; set; }
 }

@@ -14,5 +14,5 @@ public class Quiz
     
     public ICollection<Question>? Questions { get; set; }
     
-    public ICollection<ActiveQuiz>? ActiveQuizzes { get; set; }
+    public ICollection<QuizSession>? QuizSessions { get; set; }
 }

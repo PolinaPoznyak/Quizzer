@@ -11,4 +11,6 @@ public class QuizAnswer
     public bool IsCorrect { get; set; }
 
     public Question Question { get; set; }
+    
+    public ICollection<ResultDetails> ResultDetails { get; set; }
 }

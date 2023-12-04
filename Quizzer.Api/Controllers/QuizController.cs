@@ -41,7 +41,7 @@ namespace Quizzer.Api.Controllers;
 
             quizDto.UserId = userId;
 
-            var quiz = await _quizService.CreateQuizAnsync(quizDto);
+            var quiz = await _quizService.CreateQuizAsync(quizDto);
             var quizResponse = _mapper.Map<QuizCreateResponseModel>(quiz);
 
             return Ok(quizResponse);

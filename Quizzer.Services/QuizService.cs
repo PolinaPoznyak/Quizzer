@@ -20,7 +20,7 @@ public class QuizService : IQuizService
         _mapper = mapper;
     }
     
-    public async Task<QuizDto> CreateQuizAnsync(QuizDto quizDto)
+    public async Task<QuizDto> CreateQuizAsync(QuizDto quizDto)
     {
         var quizEntity = _mapper.Map<Quiz>(quizDto);
         await _quizRepository.CreateAsync(quizEntity);

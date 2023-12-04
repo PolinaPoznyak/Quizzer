@@ -16,4 +16,5 @@ public class UserDto
     
     public string? Role { get; set; }
     
+    public bool IsDeleted { get; set; }
 }
