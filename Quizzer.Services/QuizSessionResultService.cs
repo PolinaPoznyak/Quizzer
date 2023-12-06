@@ -27,11 +27,27 @@ public class QuizSessionResultService : IQuizSessionResultService
         return quizSessionResultDto;
     }
 
-    public async Task<QuizSessionResultDto> UpdateQuizSessionResultAsync(QuizSessionResultDto quizSessionResultDto)
+    public async Task<QuizSessionResultDto> UpdatQuizSessionResultAsync(QuizSessionResultDto quizSessionResultDto)
     {
         var quizSessionResultEntity = _mapper.Map<QuizSessionResult>(quizSessionResultDto);
         await _quizSessionResultRepository.UpdateAsync(quizSessionResultEntity);
         quizSessionResultDto = _mapper.Map<QuizSessionResultDto>(quizSessionResultEntity);
+
+        return quizSessionResultDto;
+    }
+    
+    public async Task<QuizSessionResultDto> UpdateQuizSessionResultAsync(QuizSessionResultDto quizSessionResultDto)
+    {
+        var quizSessionResultEntity = await _quizSessionResultRepository.GetResultByIdWithDetailsAsync(quizSessionResultDto.Id);
+    
+        if (quizSessionResultEntity != null)
+        {
+            int score = quizSessionResultEntity.ResultDetails.Count(rd => rd.IsCorrect == 1);
+            quizSessionResultEntity.Score = score;
+
+            await _quizSessionResultRepository.UpdateAsync(quizSessionResultEntity);
+            quizSessionResultDto = _mapper.Map<QuizSessionResultDto>(quizSessionResultEntity);
+        }
 
         return quizSessionResultDto;
     }

@@ -72,7 +72,7 @@ public class QuizSessionController : ControllerBase
 
         return Ok(quizSessionResponse);
     }
-    //TODO: fix this. it returns all
+    
     [HttpGet("quiz/{quizId:guid}")]
     public async Task<IActionResult> GetQuizSessionsByQuizId(Guid quizId)
     {

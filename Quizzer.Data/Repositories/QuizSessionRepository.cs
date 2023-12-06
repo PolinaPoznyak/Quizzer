@@ -12,7 +12,9 @@ public class QuizSessionRepository : Repository<QuizSession>, IQuizSessionReposi
     
     public async Task<QuizSession> GetByIdAsync(Guid id)
     {
-        var session = await Data.AsNoTracking().FirstOrDefaultAsync(s => s.Id == id);
+        var session = await Data.AsNoTracking()
+            .Include(s=>s.QuizSessionResults)
+            .FirstOrDefaultAsync(s => s.Id == id);
 
         return session;
     }

@@ -17,6 +17,15 @@ public class QuizSessionResultRepository : Repository<QuizSessionResult>, IQuizS
         return sessionResult;
     }
     
+    public async Task<QuizSessionResult> GetResultByIdWithDetailsAsync(Guid id)
+    {
+        var sessionResult = await Data.AsNoTracking()
+            .Include(qsr => qsr.ResultDetails)
+            .FirstOrDefaultAsync(s => s.Id == id);
+
+        return sessionResult;
+    }
+    
     public async Task<IReadOnlyCollection<QuizSessionResult>> GetAllQuizSessionResultAsync()
     {
         var sessionResult = await Data.AsNoTracking().ToListAsync();

@@ -13,8 +13,7 @@ public class QuestionRepository : Repository<Question>, IQuestionRepository
 
     public async Task<Question> GetByIdAsync(Guid id)
     {
-        var question = await Data.AsNoTracking().FirstOrDefaultAsync(q => q.Id == id);
-
+        var question = await Data.AsNoTracking().Include(q => q.Answers).FirstOrDefaultAsync(q => q.Id == id);
         return question;
     }
     

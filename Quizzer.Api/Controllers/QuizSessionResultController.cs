@@ -42,6 +42,16 @@ public class QuizSessionResultController : ControllerBase
     
         return Ok(quizSessionResultResponse);
     }
+    
+    [HttpPatch]
+    public async Task<IActionResult> UpdateResultDetail(QuizSessionResultUpdateRequestModel resultDetailsRequest)
+    {
+        var quizSessionResultDto = _mapper.Map<QuizSessionResultDto>(resultDetailsRequest);
+        var quizSessionResult = await _quizSessionResultService.UpdateQuizSessionResultAsync(quizSessionResultDto);
+        var quizSessionResultResponse = _mapper.Map<QuizSessionResultUpdateResponseModel>(quizSessionResult);
+    
+        return Ok(quizSessionResultResponse);
+    }
      
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteQuizSessionResult(Guid id)
