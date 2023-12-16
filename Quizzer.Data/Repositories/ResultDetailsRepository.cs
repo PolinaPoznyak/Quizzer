@@ -17,12 +17,19 @@ public class ResultDetailsRepository : Repository<ResultDetails>, IResultDetails
         return resultDetail;
     }
 
-    public async Task<IReadOnlyCollection<ResultDetails>> GetByQuizSessionResultIdAsync(Guid quizSessionResultId) 
+    public async Task<IReadOnlyCollection<ResultDetails>> GetByQuizSessionResultIdAsync(Guid quizSessionResultId)
     { 
-        var resultDetails = await Data.AsNoTracking().Where(rd => rd.QuizSessionResultId == quizSessionResultId).ToListAsync(); 
-        return resultDetails;
-    } 
+        var resultDetails = await Data
+            .AsNoTracking()
+            .Include(rd => rd.Question)
+            .ThenInclude(q => q.Answers)
+            .Include(rd => rd.QuizAnswer)
+            .Where(rd => rd.QuizSessionResultId == quizSessionResultId)
+            .ToListAsync(); 
 
+        return resultDetails;
+    }
+    
     public async Task<IReadOnlyCollection<ResultDetails>> GetAllResultDetailsAsync()
     {
         var resultDetails = await Data.AsNoTracking().ToListAsync();

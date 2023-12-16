@@ -9,4 +9,5 @@ public interface IQuizAnswerService
     Task<QuizAnswerDto> DeleteQuizAnswerAsync(Guid id);
     Task<QuizAnswerDto> GetQuizAnswerByIdAsync(Guid id);
     Task<IReadOnlyCollection<QuizAnswerDto>> GetAllQuizAnswersAsync();
+    Task<IReadOnlyCollection<QuizAnswerDto>> GetAnswersByQuestionAnswersAsync(Guid id);
 }

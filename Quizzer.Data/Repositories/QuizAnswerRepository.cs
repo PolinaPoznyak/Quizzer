@@ -25,4 +25,13 @@ public class QuizAnswerRepository : Repository<QuizAnswer>, IQuizAnswerRepositor
         
         return user;
     }
+    
+    public async Task<IReadOnlyCollection<QuizAnswer>> GetQuizAnswersByQuestionIdAsync(Guid questionId)
+    {
+        var answers = await Data.AsNoTracking()
+            .Where(qa => qa.QuestionId == questionId)
+            .ToListAsync();
+
+        return answers;
+    }
 }

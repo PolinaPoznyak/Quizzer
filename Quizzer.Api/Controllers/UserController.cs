@@ -76,9 +76,28 @@ namespace Quizzer.Api.Controllers
             var userResponse = _mapper.Map<UserUpdateResponseModel>(updatedUser);
 
             return Ok(userResponse);
+        } 
+        
+        [HttpPatch("block")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> BlockUser(UserPatchRequestModel userRequest)
+        {
+            var existingUser = await _userService.GetUserByIdAsync(userRequest.Id);
+
+            if (existingUser == null)
+            {
+                return NotFound($"User with Id {userRequest.Id} not found.");
+            }
+            var updatedUserDto = _mapper.Map<UserDto>(userRequest);
+            updatedUserDto.Password = existingUser.Password;
+            var updatedUser = await _userService.PatchUserAsync(updatedUserDto);
+            var userResponse = _mapper.Map<UserPatchResponseModel>(updatedUser);
+
+            return Ok(userResponse);
         }
         
         [HttpDelete("{id:guid}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
             var userDto = await _userService.DeleteUserAsync(id);
@@ -97,6 +116,7 @@ namespace Quizzer.Api.Controllers
         }
         
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetUsers()
         {
             var userDtos = await _userService.GetAllUsersAsync();

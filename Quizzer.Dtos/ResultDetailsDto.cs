@@ -1,6 +1,7 @@
 ﻿namespace Quizzer.Dtos;
 
-public class ResultDetailsDto
+public class 
+    ResultDetailsDto
 {
     public Guid Id { get; set; }
 
@@ -11,4 +12,8 @@ public class ResultDetailsDto
     public Guid QuizAnswerId { get; set; }
     
     public int IsCorrect { get; set; }
+    
+    public QuestionDto Question { get; set; }
+    
+    public QuizAnswerDto QuizAnswer { get; set; }
 }

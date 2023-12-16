@@ -78,4 +78,18 @@ public class QuizAnswerService: IQuizAnswerService
         
         return quizAnswerDtoDto;
     }
+
+    public async Task<IReadOnlyCollection<QuizAnswerDto>> GetAnswersByQuestionAnswersAsync(Guid id)
+    {
+        var quizAnswer = await _quizAnswerRepository.GetQuizAnswersByQuestionIdAsync(id);
+        
+        if (quizAnswer == null)
+        {
+            // TODO: Throw ItemNotFoundException (custom)
+        }
+
+        var quizAnswerDto = _mapper.Map<IReadOnlyCollection<QuizAnswerDto>>(quizAnswer);
+        
+        return quizAnswerDto;
+    }
 }

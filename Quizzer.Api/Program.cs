@@ -104,6 +104,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

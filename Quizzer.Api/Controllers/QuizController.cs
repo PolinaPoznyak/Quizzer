@@ -92,4 +92,23 @@ namespace Quizzer.Api.Controllers;
 
             return Ok(quizResponse);
         }
+        
+        [HttpGet("user/{id:guid}")]
+        public async Task<IActionResult> GetQuizzesByUserIdAnswers(Guid id)
+        {
+            var quizDtos = await _quizService.GetQuizzesByUserIdAsync(id);
+            var quizResponse = quizDtos.Select(quizDto => _mapper.Map<QuizGetResponseModel>(quizDto));
+
+            return Ok(quizResponse);
+        }
+        
+                
+        [HttpGet("user/{title}")]
+        public async Task<IActionResult> GetQuizzesByUserIdAnswers(string title)
+        {
+            var quizDtos = await _quizService.GetQuizzesByTitleAsync(title);
+            var quizResponse = quizDtos.Select(quizDto => _mapper.Map<QuizGetResponseModel>(quizDto));
+
+            return Ok(quizResponse);
+        }
     }

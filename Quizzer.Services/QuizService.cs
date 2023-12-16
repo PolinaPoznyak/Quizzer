@@ -77,6 +77,34 @@ public class QuizService : IQuizService
         return quizDtos;
     }
 
+    public async Task<IReadOnlyCollection<QuizDto>> GetQuizzesByUserIdAsync(Guid id)
+    {
+        var quiz = await _quizRepository.GetQuizzesByUserIdAsync(id);
+        
+        if (quiz == null)
+        {
+            // TODO: Throw ItemNotFoundException (custom)
+        }
+
+        var quizDto = _mapper.Map<IReadOnlyCollection<QuizDto>>(quiz);
+        
+        return quizDto;
+    }
+    
+    public async Task<IReadOnlyCollection<QuizDto>> GetQuizzesByTitleAsync(string title)
+    {
+        var quiz = await _quizRepository.GetQuizzesByTitleAsync(title);
+        
+        if (quiz == null)
+        {
+            // TODO: Throw ItemNotFoundException (custom)
+        }
+
+        var quizDto = _mapper.Map<IReadOnlyCollection<QuizDto>>(quiz);
+        
+        return quizDto;
+    }
+
     public async Task<QuizDto> GetQuizByIdAsync(Guid id)
     {
         var quiz = await _quizRepository.GetQuizByIdAsync(id);

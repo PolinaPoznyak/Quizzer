@@ -98,6 +98,22 @@ public class UserService : IUserService
 
         return userDto;
     }
+    
+    public async Task<UserDto> PatchUserAsync(UserDto userDto)
+    {
+        var existingUser = await _userRepository.GetUserByIdAsync(userDto.Id);
+
+        if (existingUser == null)
+        {
+            return null;
+        }
+
+        existingUser.IsDeleted = userDto.IsDeleted;
+        
+        await _userRepository.UpdateAsync(existingUser);
+
+        return userDto;
+    }
 
     public async Task<UserDto> DeleteUserAsync(Guid id)
     {

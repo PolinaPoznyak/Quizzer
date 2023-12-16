@@ -22,4 +22,11 @@ public class QuestionRepository : Repository<Question>, IQuestionRepository
     {
         return await Data.Where(q => q.QuizId == quizId).ToListAsync();
     }
+
+    public async Task<IEnumerable<Question>> GetAllQuestionsAsync()
+    {
+        var questions = await Data.AsNoTracking().ToListAsync();
+
+        return questions;
+    }
 }

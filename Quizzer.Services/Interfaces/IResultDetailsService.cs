@@ -9,4 +9,5 @@ public interface IResultDetailsService
     Task<ResultDetailsDto> DeleteResultDetailAsync(Guid id);
     Task<ResultDetailsDto> GetResultDetailByIdAsync(Guid id);
     Task<IReadOnlyCollection<ResultDetailsDto>> GetAllResultDetailsAsync();
+    Task<IReadOnlyCollection<ResultDetailsDto>> GetAllResultDetailsByResulAsync(Guid quizSessionResultId);
 }

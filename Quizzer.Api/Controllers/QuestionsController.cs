@@ -62,5 +62,14 @@ namespace Quizzer.Api.Controllers
             return Ok(questionResponse);
         }
         
+        [HttpGet]
+        public async Task<IActionResult> GetQuestions()
+        {
+            var questionsDtos = await _questionService.GetAllQuestionsAsync();
+
+            var questionsResponse = questionsDtos.Select(questionsDto => _mapper.Map<QuestionGetResponseModel>(questionsDto));
+
+            return Ok(questionsResponse);
+        }
     }
 }

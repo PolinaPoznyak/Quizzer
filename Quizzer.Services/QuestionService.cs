@@ -67,7 +67,21 @@ public class QuestionService : IQuestionService
 
         return questionDto;
     }
-    
+
+    public async Task<IEnumerable<QuestionDto>> GetAllQuestionsAsync()
+    {
+        var questions = await _questionRepository.GetAllQuestionsAsync();
+        
+        if (questions == null)
+        {
+            // TODO: Throw ItemNotFoundException (custom)
+        }
+        
+        var questionDtos = _mapper.Map<IReadOnlyCollection<QuestionDto>>(questions);
+
+        return questionDtos;
+    }
+
     public async Task<IEnumerable<QuestionDto>> UpdateQuestionsInQuizAsync(Guid quizId, IEnumerable<QuestionDto> updatedQuestions)
     {
         var existingQuestions = await _questionRepository.GetQuestionsByQuizIdAsync(quizId);

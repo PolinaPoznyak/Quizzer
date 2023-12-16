@@ -9,4 +9,6 @@ public class QuestionDto
     public string? QuestionType { get; set; }
 
     public Guid QuizId { get; set; }
+    
+    public IEnumerable<QuizAnswerDto>? QuizAnswers { get; set; }
 }

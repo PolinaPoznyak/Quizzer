@@ -8,6 +8,7 @@ public interface IUserService
     Task<UserDto> AuthenticateAsync(string username, string password);
     Task<UserDto> CreateUserAsync(UserDto userDto, string role);
     Task<UserDto> UpdateUserAsync(UserDto userDto);
+    Task<UserDto> PatchUserAsync(UserDto userDto);
     Task<UserDto> DeleteUserAsync(Guid id);
     Task<IReadOnlyCollection<UserDto>> GetAllUsersAsync();
     Task<UserDto> GetUserByIdAsync(Guid id);

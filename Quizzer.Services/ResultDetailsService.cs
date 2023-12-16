@@ -61,6 +61,14 @@ public class ResultDetailsService : IResultDetailsService
         return resultDetailDto;
     }
 
+    public async Task<IReadOnlyCollection<ResultDetailsDto>> GetAllResultDetailsByResulAsync(Guid quizSessionResultId)
+    {
+        var resultDetails = await _resultDetailsRepository.GetByQuizSessionResultIdAsync(quizSessionResultId);
+        var resultDetailsDto = _mapper.Map<IReadOnlyCollection<ResultDetailsDto>>(resultDetails);
+        
+        return resultDetailsDto;
+    }
+    
     public async Task<IReadOnlyCollection<ResultDetailsDto>> GetAllResultDetailsAsync()
     {
         var resultDetails = await _resultDetailsRepository.GetAllResultDetailsAsync();

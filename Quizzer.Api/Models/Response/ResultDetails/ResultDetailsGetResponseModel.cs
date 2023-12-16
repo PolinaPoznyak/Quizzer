@@ -1,4 +1,7 @@
-﻿namespace Quizzer.Api.Models.Response.ResultDetails;
+﻿using Quizzer.Api.Models.Response.Questions;
+using Quizzer.Api.Models.Response.QuizAnswer;
+
+namespace Quizzer.Api.Models.Response.ResultDetails;
 
 public class ResultDetailsGetResponseModel
 {
@@ -11,4 +14,8 @@ public class ResultDetailsGetResponseModel
     public Guid QuizAnswerId { get; set; }
     
     public int IsCorrect { get; set; }
+    
+    public QuestionGetResponseModel Question { get; set; }
+    
+    public QuizAnswerGetResponseModel QuizAnswer { get; set; }
 }

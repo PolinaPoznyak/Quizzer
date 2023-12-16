@@ -93,6 +93,7 @@ public class QuizzerDbContext : DbContext
                 .WithOne(qs => qs.Quiz)
                 .HasForeignKey(qs => qs.QuizId)
                 .OnDelete(DeleteBehavior.Restrict);
+            //TODO: change to Cascade
         }
     }
 

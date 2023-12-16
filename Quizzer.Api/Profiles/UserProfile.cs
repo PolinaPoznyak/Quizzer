@@ -14,9 +14,11 @@ public class UserProfile : Profile
         
         CreateMap<UserCreateRequestModel, UserDto>();
         CreateMap<UserUpdateRequestModel, UserDto>();
+        CreateMap<UserPatchRequestModel, UserDto>();
         
         CreateMap<UserDto, UserCreateResponseModel>();
         CreateMap<UserDto, UserUpdateResponseModel>();
+        CreateMap<UserDto, UserPatchResponseModel>();
         CreateMap<UserDto, UserDeleteResponseModel>();
         CreateMap<UserDto, UserGetResponseModel>();
     }

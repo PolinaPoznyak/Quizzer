@@ -69,4 +69,13 @@ public class ResultDetailsController : ControllerBase
 
         return Ok(resultDetailsResponse);
     }
+    
+    [HttpGet("result/{quizSessionResultId:guid}")]
+    public async Task<IActionResult> GetAllResultDetailsByResultDetails(Guid quizSessionResultId)
+    {
+        var resultDetailsDtos = await _resultDetailsService.GetAllResultDetailsByResulAsync(quizSessionResultId);
+        var resultDetailsResponse = resultDetailsDtos.Select(resultDetailsDto => _mapper.Map<ResultDetailsGetResponseModel>(resultDetailsDto));
+
+        return Ok(resultDetailsResponse);
+    }
 }

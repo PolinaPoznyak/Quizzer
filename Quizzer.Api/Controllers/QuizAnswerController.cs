@@ -66,4 +66,13 @@ public class QuizAnswerController : ControllerBase
 
         return Ok(quizAnswerResponse);
     }
+    
+    [HttpGet("question/{id:guid}")]
+    public async Task<IActionResult> GetAnswersByQuestionIdAnswers(Guid id)
+    {
+        var quizAnswerDtos = await _quizAnswerService.GetAnswersByQuestionAnswersAsync(id);
+        var quizAnswerResponse = quizAnswerDtos.Select(quizAnswerDto => _mapper.Map<QuizAnswerGetResponseModel>(quizAnswerDto));
+
+        return Ok(quizAnswerResponse);
+    }
 }

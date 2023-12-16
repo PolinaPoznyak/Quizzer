@@ -1,4 +1,6 @@
-﻿namespace Quizzer.Api.Models.Response.Questions;
+﻿using Quizzer.Api.Models.Response.QuizAnswer;
+
+namespace Quizzer.Api.Models.Response.Questions;
 
 public class QuestionGetResponseModel
 {
@@ -9,4 +11,6 @@ public class QuestionGetResponseModel
     public string? QuestionType { get; set; }
 
     public Guid QuizId { get; set; }
+    
+    public IEnumerable<QuizAnswerGetResponseModel>? QuizAnswers { get; set; }
 }
