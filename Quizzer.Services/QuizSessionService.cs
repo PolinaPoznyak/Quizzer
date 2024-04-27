@@ -23,6 +23,7 @@ public class QuizSessionService : IQuizSessionService
         var quizSessionEntity = _mapper.Map<QuizSession>(quizSessionDto);
         await _quizSessionRepository.CreateAsync(quizSessionEntity);
         quizSessionDto = _mapper.Map<QuizSessionDto>(quizSessionEntity);
+            //TODO: добавить проверку на isMultiplayer. И если true, то создаем quizCode, иначе quizCode == null
 
         return quizSessionDto;
     }

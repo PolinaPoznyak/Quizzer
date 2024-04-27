@@ -48,6 +48,15 @@ public class QuizzerDbContext : DbContext
                 .WithOne(qsr => qsr.QuizSession)
                 .HasForeignKey(qsr => qsr.QuizSessionId)
                 .OnDelete((DeleteBehavior.Cascade));
+            
+            builder.Property(qs => qs.StartDate)
+                .IsRequired(false);
+            
+            builder.Property(qs => qs.EndDate)
+                .IsRequired(false);
+            
+            builder.Property(qs => qs.QuizCode)
+                .IsRequired(false);
         }
     }
 

@@ -6,7 +6,9 @@ public class QuizSessionCreateRequestModel
 {
     public Guid QuizId { get; set; }
     
-    public DateTime StartDate { get; set; } = DateTime.Now;
+    public DateTime? StartDate { get; set; }
+    
+    public int? QuizCode { get; set; }
     
     public IEnumerable<QuizSessionResultCreateRequestModel>? QuizSessionResults { get; set; }
 }

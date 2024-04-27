@@ -6,9 +6,11 @@ public class QuizSessionDto
     
     public Guid QuizId { get; set; }
     
-    public DateTime StartDate { get; set; }
+    public DateTime? StartDate { get; set; }
     
     public DateTime? EndDate { get; set; }
+    
+    public int? QuizCode { get; set; }
     
     public IEnumerable<QuizSessionResultDto>? QuizSessionResults { get; set; }
 }

@@ -11,5 +11,7 @@ public class QuizUpdateRequestModel
     
     public string? Description { get; set; }
     
+    public bool IsMultiplayer { get; set; }
+    
     public IEnumerable<QuestionUpdateRequestModel>? Questions { get; set; }
 }
