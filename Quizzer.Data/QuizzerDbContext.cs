@@ -7,7 +7,9 @@ namespace Quizzer.Data;
 public class QuizzerDbContext : DbContext
 {
 
-    public QuizzerDbContext(DbContextOptions<QuizzerDbContext> options) : base(options) { }
+    public QuizzerDbContext(DbContextOptions<QuizzerDbContext> options) : base(options) {
+        Database.EnsureCreated();
+    }
     
     public DbSet<User> Users { get; set; }
     public DbSet<Quiz> Quizzes { get; set; }
@@ -40,13 +42,12 @@ public class QuizzerDbContext : DbContext
             builder.HasOne(qs => qs.Quiz)
                 .WithMany(q => q.QuizSessions)
                 .HasForeignKey(qs => qs.QuizId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
             
             builder.HasMany(qs => qs.QuizSessionResults)
                 .WithOne(qsr => qsr.QuizSession)
                 .HasForeignKey(qsr => qsr.QuizSessionId)
-                .OnDelete((DeleteBehavior.Restrict));
-            //TODO: change delete cascade
+                .OnDelete((DeleteBehavior.Cascade));
         }
     }
 
@@ -82,7 +83,7 @@ public class QuizzerDbContext : DbContext
             builder.HasOne(qz => qz.User)
                 .WithMany(u => u.CreatedQuizzes)
                 .HasForeignKey(qz => qz.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(qz => qz.Questions)
                 .WithOne(q => q.Quiz)
@@ -92,8 +93,7 @@ public class QuizzerDbContext : DbContext
             builder.HasMany(qz => qz.QuizSessions)
                 .WithOne(qs => qs.Quiz)
                 .HasForeignKey(qs => qs.QuizId)
-                .OnDelete(DeleteBehavior.Restrict);
-            //TODO: change to Cascade
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 
@@ -127,12 +127,12 @@ public class QuizzerDbContext : DbContext
             builder.HasMany(u => u.CreatedQuizzes)
                 .WithOne(q => q.User)
                 .HasForeignKey(q => q.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(u => u.QuizSessionResults)
                 .WithOne(qsr => qsr.User)
                 .HasForeignKey(qsr => qsr.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 
@@ -163,11 +163,11 @@ public class QuizzerDbContext : DbContext
             builder.HasOne(qsr => qsr.QuizSession)
                 .WithMany(qs => qs.QuizSessionResults)
                 .HasForeignKey(qsr => qsr.QuizSessionId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(qsr => qsr.User)
                 .WithMany(u => u.QuizSessionResults)
                 .HasForeignKey(qsr => qsr.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }

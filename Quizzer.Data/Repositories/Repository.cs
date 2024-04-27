@@ -15,7 +15,6 @@ public class Repository<T> : IRepository<T> where T : class
         Data = _dbContext.Set<T>();
     }
     
-    
     public async Task<IReadOnlyCollection<T>> GetAllAsync()
     {
         var result = await Data.AsNoTracking().ToListAsync();
