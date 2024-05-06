@@ -12,5 +12,7 @@ public class QuizSessionDeleteResponseModel
     
     public DateTime? EndDate { get; set; }
     
+    public int? QuizCode { get; set; }
+    
     public IEnumerable<QuizSessionResultDeleteResponseModel>? QuizSessionResults { get; set; }
 }
