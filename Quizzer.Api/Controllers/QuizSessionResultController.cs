@@ -43,6 +43,22 @@ public class QuizSessionResultController : ControllerBase
         return Ok(quizSessionResultResponse);
     }
     
+    [Authorize]
+    [HttpPost("multiplayer-quiz")]
+    public async Task<IActionResult> CreateQuizSessionResultByQuizCode(int quizCode)
+    {
+        var userIdClaim = User.FindFirstValue(ClaimTypes.Name);
+
+        if (userIdClaim == null || !Guid.TryParse(userIdClaim, out var userId))
+        {
+            return BadRequest("Invalid user ID");
+        }
+        var quizSessionResult = await _quizSessionResultService.CreateQuizSessionResultByCodeAsync(quizCode, userId);
+        var quizSessionResultResponse = _mapper.Map<QuizSessionResultCreateResponseModel>(quizSessionResult);
+    
+        return Ok(quizSessionResultResponse);
+    }
+    
     [HttpPatch]
     public async Task<IActionResult> UpdateResultDetail(QuizSessionResultUpdateRequestModel resultDetailsRequest)
     {

@@ -9,12 +9,14 @@ namespace Quizzer.Services;
 public class QuizSessionResultService : IQuizSessionResultService
 {
     private readonly IQuizSessionResultRepository _quizSessionResultRepository;
+    private readonly IQuizSessionRepository _quizSessionRepository;
     private readonly IMapper _mapper;
 
     
-    public QuizSessionResultService(IQuizSessionResultRepository quizSessionResultRepository, IMapper mapper)
+    public QuizSessionResultService(IQuizSessionResultRepository quizSessionResultRepository, IQuizSessionRepository quizSessionRepository, IMapper mapper)
     {
         _quizSessionResultRepository = quizSessionResultRepository;
+        _quizSessionRepository = quizSessionRepository;
         _mapper = mapper;
     }
    
@@ -27,6 +29,21 @@ public class QuizSessionResultService : IQuizSessionResultService
         return quizSessionResultDto;
     }
 
+    public async Task<QuizSessionResultDto> CreateQuizSessionResultByCodeAsync(int quizCode, Guid userId)
+    {
+        var quizSession = await _quizSessionRepository.GetByCodeAsync(quizCode);
+        var quizSessionResultEntity = new QuizSessionResult
+        {
+            UserId = userId,
+            QuizSessionId = quizSession.Id
+        };
+        
+        await _quizSessionResultRepository.CreateAsync(quizSessionResultEntity);
+        var quizSessionResultDto = _mapper.Map<QuizSessionResultDto>(quizSessionResultEntity);
+
+        return quizSessionResultDto;
+    }
+    
     public async Task<QuizSessionResultDto> UpdatQuizSessionResultAsync(QuizSessionResultDto quizSessionResultDto)
     {
         var quizSessionResultEntity = _mapper.Map<QuizSessionResult>(quizSessionResultDto);

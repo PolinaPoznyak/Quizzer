@@ -5,6 +5,7 @@ namespace Quizzer.Services.Interfaces;
 public interface IQuizSessionResultService
 {
         Task<QuizSessionResultDto> CreateQuizSessionResultAsync(QuizSessionResultDto quizSessionResultDto);
+        Task<QuizSessionResultDto> CreateQuizSessionResultByCodeAsync(int quizCode, Guid userId);
         Task<QuizSessionResultDto> UpdateQuizSessionResultAsync(QuizSessionResultDto quizSessionResultDto);
         Task<QuizSessionResultDto> DeleteQuizSessionResultAsync(Guid id);
         Task<QuizSessionResultDto> GetQuizSessionResultByIdAsync(Guid id);
