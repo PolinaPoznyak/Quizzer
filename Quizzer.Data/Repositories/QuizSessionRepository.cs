@@ -6,8 +6,10 @@ namespace Quizzer.Data.Repositories;
 
 public class QuizSessionRepository : Repository<QuizSession>, IQuizSessionRepository
 {
-    public QuizSessionRepository(QuizzerDbContext repositoryContext) : base(repositoryContext)
+    private readonly IUserRepository _userRepository;
+    public QuizSessionRepository(QuizzerDbContext repositoryContext, IUserRepository userRepository) : base(repositoryContext)
     {
+        _userRepository = userRepository;
     }
     
     public async Task<QuizSession> GetByIdAsync(Guid id)

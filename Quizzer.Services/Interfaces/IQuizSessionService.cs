@@ -10,4 +10,5 @@ public interface IQuizSessionService
     Task<QuizSessionDto> GetQuizSessionByIdAsync(Guid id);
     Task<IReadOnlyCollection<QuizSessionDto>> GetQuizSessionByQuizIdAsync(Guid id);
     Task<IReadOnlyCollection<QuizSessionDto>> GetAllQuizSessionsAsync();
+    Task<IReadOnlyCollection<UserDto>> GetUsersInQuizSessionAsync(Guid quizSessionId);
 }

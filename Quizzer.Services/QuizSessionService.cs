@@ -11,14 +11,17 @@ public class QuizSessionService : IQuizSessionService
 {
     private readonly IQuizSessionRepository _quizSessionRepository;
     private readonly IQuizRepository _quizRepository;
+    private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
 
     
-    public QuizSessionService(IQuizSessionRepository quizSessionRepository, IQuizRepository quizRepository, IMapper mapper)
+    public QuizSessionService(IQuizSessionRepository quizSessionRepository, IQuizRepository quizRepository, 
+        IMapper mapper, IUserRepository userRepository)
     {
         _quizSessionRepository = quizSessionRepository;
         _quizRepository = quizRepository;
         _mapper = mapper;
+        _userRepository = userRepository;
     }
     
     public async Task<QuizSessionDto> CreateQuizSessionAsync(QuizSessionDto quizSessionDto)
@@ -87,5 +90,13 @@ public class QuizSessionService : IQuizSessionService
         var quizSessionsDtos = _mapper.Map<IReadOnlyCollection<QuizSessionDto>>(quizSessions);
 
         return quizSessionsDtos;
+    }
+    
+    public async Task<IReadOnlyCollection<UserDto>> GetUsersInQuizSessionAsync(Guid quizSessionId)
+    {
+        var users = await _userRepository.GetUsersByQuizSession(quizSessionId);
+        var userDtos = _mapper.Map<IReadOnlyCollection<UserDto>>(users);
+        
+        return userDtos;
     }
 }

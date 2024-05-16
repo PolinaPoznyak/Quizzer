@@ -90,4 +90,11 @@ public class QuizSessionController : ControllerBase
 
         return Ok(quizSessionResponse);
     }
+    
+    [HttpGet("quiz/{quizSessionId:guid}/users")]
+    public async Task<IActionResult> GetUsersInQuizSession(Guid quizSessionId)
+    {
+        var users = await _quizSessionService.GetUsersInQuizSessionAsync(quizSessionId);
+        return Ok(users);
+    }
 }
