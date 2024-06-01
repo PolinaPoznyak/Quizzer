@@ -53,6 +53,20 @@ public class QuizSessionService : IQuizSessionService
         return quizSessionDto;
     }
 
+    public async Task UpdateQuizSessionStartDate(Guid quizSessionId, DateTime startDate)
+    {
+        var quizSession = await _quizSessionRepository.GetByIdAsync(quizSessionId);
+        if (quizSession != null)
+        {
+            quizSession.StartDate = startDate;
+            await _quizSessionRepository.UpdateAsync(quizSession);
+        }
+        else
+        {
+            // TODO: Throw ItemNotFoundException (custom)
+        }
+    }
+    
     public async Task<QuizSessionDto> DeleteQuizSessionAsync(Guid id)
     {
         var quizSession = await _quizSessionRepository.GetByIdAsync(id);
@@ -65,6 +79,14 @@ public class QuizSessionService : IQuizSessionService
     public async Task<QuizSessionDto> GetQuizSessionByIdAsync(Guid id)
     {
         var quizSession = await _quizSessionRepository.GetByIdAsync(id);
+        var quizSessionDto = _mapper.Map<QuizSessionDto>(quizSession);
+        
+        return quizSessionDto;
+    }
+    
+    public async Task<QuizSessionDto> GetQuizSessionByCodeAsync(int code)
+    {
+        var quizSession = await _quizSessionRepository.GetByCodeAsync(code);
         var quizSessionDto = _mapper.Map<QuizSessionDto>(quizSession);
         
         return quizSessionDto;

@@ -8,6 +8,8 @@ public class QuizSessionUpdateRequestModel
     
     public Guid QuizId { get; set; }
     
+    public DateTime? StartDate { get; set; }
+    
     public DateTime? EndDate { get; set; }
     
     public IEnumerable<QuizSessionResultUpdateRequestModel>? QuizSessionResults { get; set; }

@@ -26,4 +26,11 @@ public class QuizHub : Hub
                 .SendAsync("Notify", quizUsers);
         }
     }
+    
+    public async Task StartQuizSession(Guid quizSessionId)
+    {
+        await _quizSessionService.UpdateQuizSessionStartDate(quizSessionId, DateTime.UtcNow);
+    
+        await Clients.All.SendAsync("QuizStarted");
+    }
 }

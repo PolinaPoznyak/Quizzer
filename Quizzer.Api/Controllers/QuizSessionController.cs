@@ -73,6 +73,15 @@ public class QuizSessionController : ControllerBase
         return Ok(quizSessionResponse);
     }
     
+    [HttpGet("byCode/{code:int}")]
+    public async Task<IActionResult> GetQuizSessionByCode(int code) 
+    {
+        var quizSessionDto = await _quizSessionService.GetQuizSessionByCodeAsync(code); 
+        var quizSessionResponse = _mapper.Map<QuizSessionGetResponseModel>(quizSessionDto);
+        
+        return Ok(quizSessionResponse);
+    }
+    
     [HttpGet("quiz/{quizId:guid}")]
     public async Task<IActionResult> GetQuizSessionsByQuizId(Guid quizId)
     {
