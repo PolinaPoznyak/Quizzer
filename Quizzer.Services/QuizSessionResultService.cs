@@ -22,6 +22,12 @@ public class QuizSessionResultService : IQuizSessionResultService
    
     public async Task<QuizSessionResultDto> CreateQuizSessionResultAsync(QuizSessionResultDto quizSessionResultDto)
     {
+        var existingResult = await _quizSessionResultRepository.GetByUserIdAndQuizSessionIdAsync(quizSessionResultDto.UserId, quizSessionResultDto.QuizSessionId);
+        if (existingResult != null)
+        {
+            return _mapper.Map<QuizSessionResultDto>(existingResult);
+        }
+
         var quizSessionResultEntity = _mapper.Map<QuizSessionResult>(quizSessionResultDto);
         await _quizSessionResultRepository.CreateAsync(quizSessionResultEntity);
         quizSessionResultDto = _mapper.Map<QuizSessionResultDto>(quizSessionResultEntity);
@@ -32,12 +38,19 @@ public class QuizSessionResultService : IQuizSessionResultService
     public async Task<QuizSessionResultDto> CreateQuizSessionResultByCodeAsync(int quizCode, Guid userId)
     {
         var quizSession = await _quizSessionRepository.GetByCodeAsync(quizCode);
+
+        var existingResult = await _quizSessionResultRepository.GetByUserIdAndQuizSessionIdAsync(userId, quizSession.Id);
+        if (existingResult != null)
+        {
+            return _mapper.Map<QuizSessionResultDto>(existingResult);
+        }
+
         var quizSessionResultEntity = new QuizSessionResult
         {
             UserId = userId,
             QuizSessionId = quizSession.Id
         };
-        
+
         await _quizSessionResultRepository.CreateAsync(quizSessionResultEntity);
         var quizSessionResultDto = _mapper.Map<QuizSessionResultDto>(quizSessionResultEntity);
 

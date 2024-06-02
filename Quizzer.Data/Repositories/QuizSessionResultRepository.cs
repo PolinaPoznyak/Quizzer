@@ -32,4 +32,13 @@ public class QuizSessionResultRepository : Repository<QuizSessionResult>, IQuizS
 
         return sessionResult;
     }
+    
+    public async Task<QuizSessionResult> GetByUserIdAndQuizSessionIdAsync(Guid userId, Guid quizSessionId)
+    {
+        var result = await Data.AsNoTracking()
+            .FirstOrDefaultAsync(qsr => 
+                qsr.UserId == userId && 
+                qsr.QuizSessionId == quizSessionId);
+        return result;
+    }
 }

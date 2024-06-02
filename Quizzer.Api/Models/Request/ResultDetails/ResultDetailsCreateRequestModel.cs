@@ -6,7 +6,7 @@ public class ResultDetailsCreateRequestModel
     
     public Guid QuestionId { get; set; }
     
-    public Guid QuizAnswerId { get; set; }
+    public Guid? QuizAnswerId { get; set; }
     
     public int IsCorrect { get; set; }
 }
