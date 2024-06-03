@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Quizzer.Data;
@@ -11,9 +12,11 @@ using Quizzer.Data;
 namespace Quizzer.Data.Migrations
 {
     [DbContext(typeof(QuizzerDbContext))]
-    partial class QuizzerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240603201035_AddImageToQuizModel")]
+    partial class AddImageToQuizModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

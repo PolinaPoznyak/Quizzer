@@ -10,6 +10,8 @@ public class QuizGetResponseModel
     
     public string? Description { get; set; }
     
+    public string? QuizPicture { get; set; }
+    
     public bool IsMultiplayer { get; set; }
     
     public IEnumerable<QuestionGetResponseModel>? Questions { get; set; }

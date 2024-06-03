@@ -9,6 +9,8 @@ public class QuizCreateRequestModel
     
     public string? Description { get; set; }
     
+    public string? QuizPicture { get; set; }
+    
     public bool IsMultiplayer { get; set; }
     
     public IEnumerable<QuestionCreateRequestModel>? Questions { get; set; }

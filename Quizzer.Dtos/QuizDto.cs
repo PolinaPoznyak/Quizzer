@@ -8,6 +8,8 @@ public class QuizDto
     
     public string? Description { get; set; }
     
+    public string? QuizPicture { get; set; }
+    
     public bool IsMultiplayer { get; set; }
     
     public Guid UserId { get; set; }
